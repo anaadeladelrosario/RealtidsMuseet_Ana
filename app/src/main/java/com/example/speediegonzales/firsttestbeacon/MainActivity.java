@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
             }
 
         BeaconText += "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \n\n" +
-                " Beacon with the BluetoothAddress " + beacon.getBluetoothAddress() + " is " +beacon.getDistance()+" meters away \n\n" +
+                " Beacon with the BluetoothAddress " + beacon.getBluetoothAddress() + " is " + beacon.getDistance()+" meters away \n\n" +
                 " Message from ROGER RABBIT \n\n" + museumBeacon.toString() + "\n @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \n\n\n";
         return BeaconText;
     }
