@@ -1,7 +1,10 @@
 /**
- * 1) Hampus 2017-11-30: 1st checkin with initial setup where Hampus able to get beacon signals and display them
- * 2) Cecilia 2017-11-30: beaconOne(), beaconTwo(): simple print messages
- * 3) Cecilia 2017-12-03: create MuseumBeacon class in order to track beacons in an arraylist
+ * Team members: Hampus Idstam, Ana Adela del Rosario and Cecilia To
+ * Project: IoT RealTime Museum
+ *
+ * 1) Hampus Idstam 2017-11-30: 1st checkin with initial setup where Hampus able to get beacon signals and display them
+ * 2) Cecilia To 2017-11-30: beaconOne(), beaconTwo(): simple print messages
+ * 3) Cecilia To 2017-12-03: create MuseumBeacon class in order to track beacons in an arraylist
  */
 
 
@@ -69,11 +72,11 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
 
                     for(Beacon b : beacons){
                         if(b.getDistance() < beacons.iterator().next().getDistance()){
-                         BeaconText += "B distance " + b.getDistance() + " where next" + beacons.iterator().next().getDistance()+" meters away \n\n";
+                         BeaconText += "==> This beacon distance " + b.getDistance() + " compare to next beacon " + beacons.iterator().next().getDistance()+" meters away \n\n";
                          BeaconText = beaconOne(BeaconText, b);
 
                         } else if(beacons.iterator().next().getDistance() < b.getDistance()){
-                            BeaconText += "B next distance " + beacons.iterator().next().getDistance() + " where original" + b.getDistance()+" meters away \n\n";
+                            BeaconText += "==> Next beacon distance " + beacons.iterator().next().getDistance() + " compare to this beacon " + b.getDistance()+" meters away \n\n";
                             BeaconText = beaconTwo(BeaconText, beacons.iterator().next());
                         } else
                             BeaconText = beaconThree(BeaconText, b);
