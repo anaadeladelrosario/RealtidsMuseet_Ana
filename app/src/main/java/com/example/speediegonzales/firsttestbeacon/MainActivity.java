@@ -4,7 +4,10 @@
  *
  * 1) Hampus Idstam 2017-11-30: 1st checkin with initial setup where Hampus able to get beacon signals and display them
  * 2) Cecilia To 2017-11-30: beaconOne(), beaconTwo(): simple print messages
- * 3) Cecilia To 2017-12-03: create MuseumBeacon class in order to track beacons in an arraylist
+ * 3) Cecilia To 2017-12-03:
+ *         a) create MuseumBeacon class in order to track beacons in an arraylist
+ *         b) setting up to only take the nearest beacon by comparing the distance
+ * 4) Cecilia To 2017-12-04: add addBeaconToArrayList() to redo repeating code
  */
 
 
@@ -97,13 +100,17 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         Log.i(TAG, text);
     }
 
-    private String beaconOne(String BeaconText, Beacon beacon){
+    private MuseumBeacon addBeaconToArrayList(Beacon beacon){
         MuseumBeacon museumBeacon = null;
-            if(!beaconsList.contains(beacon.getBluetoothAddress())){
-                //check if beacon is already in beaconslist, if not, add beacon
-                museumBeacon = new MuseumBeacon(beacon);
-                beaconsList.add(museumBeacon);
-            }
+        if(!beaconsList.contains(beacon.getBluetoothAddress())){
+            //check if beacon is already in beaconslist, if not, add beacon
+            museumBeacon = new MuseumBeacon(beacon);
+            beaconsList.add(museumBeacon);
+        }
+        return museumBeacon;
+    }
+    private String beaconOne(String BeaconText, Beacon beacon){
+        MuseumBeacon museumBeacon = addBeaconToArrayList(beacon);
 
         BeaconText += "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \n\n" +
                 " Beacon with the BluetoothAddress " + beacon.getBluetoothAddress() + " is " + beacon.getDistance()+" meters away \n\n" +
@@ -112,12 +119,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
     }
 
     private String beaconTwo(String BeaconText, Beacon beacon){
-        MuseumBeacon museumBeacon = null;
-        if(!beaconsList.contains(beacon.getBluetoothAddress())){
-            //check if beacon is already in beaconslist, if not, add beacon
-            museumBeacon = new MuseumBeacon(beacon);
-            beaconsList.add(museumBeacon);
-        }
+        MuseumBeacon museumBeacon = addBeaconToArrayList(beacon);
 
         BeaconText += "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \n\n" +
                 " Beacon with the BluetoothAddress " + beacon.getBluetoothAddress() + " is " +beacon.getDistance()+" meters away \n\n" +
@@ -126,12 +128,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
     }
 
     private String beaconThree(String BeaconText, Beacon beacon){
-        MuseumBeacon museumBeacon = null;
-        if(!beaconsList.contains(beacon.getBluetoothAddress())){
-            //check if beacon is already in beaconslist, if not, add beacon
-            museumBeacon = new MuseumBeacon(beacon);
-            beaconsList.add(museumBeacon);
-        }
+        MuseumBeacon museumBeacon = addBeaconToArrayList(beacon);
 
         BeaconText += "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ \n\n" +
                 " Beacon with the BluetoothAddress " + beacon.getBluetoothAddress() + " is " +beacon.getDistance()+" meters away \n\n" +
