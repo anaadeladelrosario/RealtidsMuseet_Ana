@@ -147,5 +147,6 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
 
     private void gitTestByHampus(){
         /* Test-function */
+        /* test2 */
     }
 }
