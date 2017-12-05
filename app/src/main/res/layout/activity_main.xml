@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.realtidsmuseet.realtidsmuseet.MainActivity">
+
+    <TextView
+        android:id="@+id/logWindow"
+        android:layout_width="393dp"
+        android:layout_height="567dp"
+        android:maxLines = "999"
+        android:scrollbars = "vertical"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+</android.support.constraint.ConstraintLayout>
