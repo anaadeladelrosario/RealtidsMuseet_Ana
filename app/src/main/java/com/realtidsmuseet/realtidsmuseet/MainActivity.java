@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         * */
 
         /* TEST COMMIT FROM LAPTOP */
+        /* TEST COMMIT 2 FROM LAPTOP */
     }
 
     private void beaconTracker(){

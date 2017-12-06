@@ -3,9 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RealtidsMuseet.iml" filepath="$PROJECT_DIR$/RealtidsMuseet.iml" />
+      <module fileurl="file://C:\Users\Hampus\Documents\AndroidDev\RealtidsMuseet\RealtidsMuseet\RealtidsMuseet.iml" filepath="C:\Users\Hampus\Documents\AndroidDev\RealtidsMuseet\RealtidsMuseet\RealtidsMuseet.iml" />
       <module fileurl="file://C:\Users\Hampus\Documents\AndroidDev\RealtidsMuseet\RealtidsMuseet.iml" filepath="C:\Users\Hampus\Documents\AndroidDev\RealtidsMuseet\RealtidsMuseet.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\Hampus\Documents\AndroidDev\RealtidsMuseet\app\app.iml" filepath="C:\Users\Hampus\Documents\AndroidDev\RealtidsMuseet\app\app.iml" />
+      <module fileurl="file://C:\Users\Hampus\Documents\AndroidDev\RealtidsMuseet\RealtidsMuseet\app\app.iml" filepath="C:\Users\Hampus\Documents\AndroidDev\RealtidsMuseet\RealtidsMuseet\app\app.iml" />
     </modules>
   </component>
 </project>
