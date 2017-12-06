@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         * Create museumBeacon 4
         * Add all to the Exhibition
         * */
+
+        /* TEST COMMIT FROM LAPTOP */
     }
 
     private void beaconTracker(){
