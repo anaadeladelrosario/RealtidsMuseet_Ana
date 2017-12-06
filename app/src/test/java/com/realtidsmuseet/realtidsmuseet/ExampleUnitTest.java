@@ -1,4 +1,4 @@
-package com.example.speediegonzales.firsttestbeacon;
+package com.realtidsmuseet.realtidsmuseet;
 
 import org.junit.Test;
 
