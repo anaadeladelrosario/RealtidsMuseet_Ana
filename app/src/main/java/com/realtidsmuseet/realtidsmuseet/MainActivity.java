@@ -1,7 +1,7 @@
 /**
  * 1) Hampus 2017-11-30: 1st checkin with initial setup where Hampus able to get beacon signals and display them
  * 2) Cecilia 2017-11-30: beaconOne(), beaconTwo(): simple print messages
- * 3) Cecilia 2017-12-03: create MuseumBeacon class in order to track beacons in an arraylist
+ * 3) Cecilia 2017-12-03: create MuseumPlace class in order to track beacons in an arraylist
  * 4) Hampus: Modified both files so that we can pre-store beacons and later track them
  */
 
@@ -57,7 +57,9 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         /* TEST COMMIT 2 FROM LAPTOP */
     }
 
+
     private void beaconTracker(){
+        // TEMP CODE TO PRINT TO SCREEN
         printToLogI("!beaconTracker! : BeaconsListPresent:" + beaconsListPresent.size() + " beacons in it");
         if(beaconsListPresent.size() > 0){
             String beaconsFound = (Integer.toString(beaconsListPresent.size()) + " beacons found");
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
             clearAndPrintToScreenTextArea(beaconsFound + "\n\n" + BeaconText);
             printToLogI(beaconsFound + "\n\n" + BeaconText);
         }
+
     }
 
     @Override
@@ -94,7 +97,8 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
                     printToLogI("The beaconsListTemp has " + beaconsListTemp.size() + " beacons in it");
                     printToLogI("The beaconsListPresent has " + beaconsListPresent.size() + " beacons in it");
                 }
-                beaconTracker();
+                beaconTracker(); // Maybe remove this one
+
             }
         });
 
@@ -142,10 +146,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
 
 
     private String beaconOne(String BeaconText, Beacon beacon){
-        MuseumBeacon museumBeacon = null;
+        MuseumPlace museumBeacon = null;
         if(!beaconsList.contains(beacon.getBluetoothAddress())){
             //check if beacon is already in beaconslist, if not, add beacon
-            museumBeacon = new MuseumBeacon(beacon);
+            museumBeacon = new MuseumPlace(beacon);
             beaconsList.add(museumBeacon);
         }
 
@@ -156,10 +160,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
     }
 
     private String beaconTwo(String BeaconText, Beacon beacon){
-        MuseumBeacon museumBeacon = null;
+        MuseumPlace museumBeacon = null;
         if(!beaconsList.contains(beacon.getBluetoothAddress())){
             //check if beacon is already in beaconslist, if not, add beacon
-            museumBeacon = new MuseumBeacon(beacon);
+            museumBeacon = new MuseumPlace(beacon);
             beaconsList.add(museumBeacon);
         }
 
@@ -170,10 +174,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
     }
 
     private String beaconThree(String BeaconText, Beacon beacon){
-        MuseumBeacon museumBeacon = null;
+        MuseumPlace museumBeacon = null;
         if(!beaconsList.contains(beacon.getBluetoothAddress())){
             //check if beacon is already in beaconslist, if not, add beacon
-            museumBeacon = new MuseumBeacon(beacon);
+            museumBeacon = new MuseumPlace(beacon);
             beaconsList.add(museumBeacon);
         }
 
