@@ -1,5 +1,9 @@
 package com.realtidsmuseet.realtidsmuseet;
 
+import android.util.Log;
+
+import org.altbeacon.beacon.Beacon;
+
 import java.util.ArrayList;
 
 /**
@@ -9,9 +13,7 @@ import java.util.ArrayList;
 public class Exhibition {
     private String exhibitionName;
     private String exhibitionType;
-    private ArrayList<MuseumBeacon> beaconList = new ArrayList<>();
-    private MuseumBeacon startBeacon;
-    private MuseumBeacon endBeacon;
+    private ArrayList<MuseumPlace> placeList = new ArrayList<>();
 
     Exhibition(String exhibitionName, String exhibitionType){
         this.exhibitionName = exhibitionName;
@@ -32,35 +34,25 @@ public class Exhibition {
         this.exhibitionType = exhibitionType;
     }
 
-    public MuseumBeacon getStartBeacon() {
-        return startBeacon;
+    public void addBeacon(MuseumPlace beacon){
+        placeList.add(beacon); // Add the beacon to the exhibition list
     }
-    public void setStartBeacon(MuseumBeacon startBeacon) {
-        this.startBeacon = startBeacon;
-    }
+    public MuseumPlace beaconExistInExhibtion(Beacon beacon){
+        String blutoothadress = beacon.getBluetoothAddress();
 
-    public MuseumBeacon getEndBeacon() {
-        return endBeacon;
-    }
-    public void setEndBeacon(MuseumBeacon endBeacon) {
-        this.endBeacon = endBeacon;
-    }
-
-    public void addBeacon(MuseumBeacon beacon){
-        String beaconType = beacon.getBeaconType();
-        if(beaconType.equals("start")){
-            if(getStartBeacon() == null){
-                setStartBeacon(beacon);
+        for(MuseumPlace p : placeList){
+            printToLogI(blutoothadress + " compared to " + p.getBeaconBluetoothAdress());
+            if(p.getBeaconBluetoothAdress().equals(blutoothadress)){
+                printToLogI(" =  the same");
+                return p;
             }else{
-                // Maybe some error handling that is already exist a start beacon, you cant add 2
-            }
-        }else if(beaconType.equals("end")){
-            if(getEndBeacon() == null){
-                setEndBeacon(beacon);
-            }else {
-                // Maybe some error handling that is already exist a end beacon, you cant add 2
+                printToLogI(" = not the same");
             }
         }
-        beaconList.add(beacon); // Add the beacon to the exhibition list
+        return null;
+    }
+    private void printToLogI(String text){
+        String TAG = "BeaconTracker";
+        Log.i(TAG, text);
     }
 }
