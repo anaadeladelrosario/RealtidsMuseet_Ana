@@ -3,6 +3,7 @@
  * 2) Cecilia 2017-11-30: beaconOne(), beaconTwo(): simple print messages
  * 3) Cecilia 2017-12-03: create MuseumPlace class in order to track beacons in an arraylist
  * 4) Hampus: Modified both files so that we can pre-store beacons and later track them
+ * 5) Cecilia 2017-12-10: added a check for visited state
  */
 
 package com.realtidsmuseet.realtidsmuseet;
@@ -49,11 +50,17 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         MuseumPlace place1 = new MuseumPlace("D8:4E:93:A8:E4:83", "Hej från D8 \n");
         MuseumPlace place2 = new MuseumPlace("EA:C9:B7:DD:8A:A0", "Hej från EA \n");
         MuseumPlace place3 = new MuseumPlace("F2:E1:A3:7E:CF:BC", "Hej från F2 \n");
+        MuseumPlace place4 = new MuseumPlace("E6:1C:EB:07:A0:BD", "Hej från Kermit the Frog (BD)\n");
+        MuseumPlace place5 = new MuseumPlace("ED:98:F0:B5:DF:1E", "Hej från NEMO (IE) \n");
+        MuseumPlace place6 = new MuseumPlace("E6:96:82:C4:71:3E", "Hej från Roger Rabbit (3E) \n");
         Exhibition exhibition1 = new Exhibition("Sveriges historia", "Linear");
         exhibitionList.add(exhibition1);
         exhibition1.addBeacon(place1);
         exhibition1.addBeacon(place2);
         exhibition1.addBeacon(place3);
+        exhibition1.addBeacon(place4);
+        exhibition1.addBeacon(place5);
+        exhibition1.addBeacon(place6);
     }
 
 
@@ -70,12 +77,11 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
             if(place == null){
                 message = "null";
             }else{
-                message = place.getBeaconMessage();
+                message = place.getBeaconMessage() + "\nhas visited: "+place.isVisited();
             }
 
-
             clearAndPrintToScreenTextArea(beaconsFound + "\n\n" + BeaconText + "\n\n" + message);
-            printToLogI(beaconsFound + "\n\n" + BeaconText + "\n\n" + message);
+            printToLogI(beaconsFound + "\n\n" + BeaconText + "\n\n" + message+"\n\n");
         }
 
         /*
@@ -151,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         }
         return null;
     }
+
 
     /* TEMPORARILY COMMENT OUT - CECILIAS CODE!
     @Override

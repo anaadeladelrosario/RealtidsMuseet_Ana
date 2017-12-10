@@ -3,6 +3,7 @@ package com.realtidsmuseet.realtidsmuseet;
 /**
  * Created by Cecilia To on 12/3/17.
  * Modified by Hampus heavily 12/5/17.
+ * Modified by Cecilia to have visited setup in the constructor as false 12/10/17.
  */
 
 public class MuseumPlace {
@@ -10,8 +11,9 @@ public class MuseumPlace {
     private boolean visited = false;
     private String beaconBluetoothAdress;
 
-    MuseumPlace(String beaconBluetoothAdress, String beaconMessage){
+    MuseumPlace(String beaconBluetoothAdress,String beaconMessage){
         setBeaconBluetoothAdress(beaconBluetoothAdress);
+        setVisitedStatus(false);
         setBeaconMessage(beaconMessage);
     }
 
