@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
     private static final String IBEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
     private static final String TAG = "BeaconTracker";
     private TextView logWindow;
+    private TextView exhibitionHeader;
     private ArrayList<Beacon> beaconsListPresent = new ArrayList<>();
     private ArrayList<Exhibition> exhibitionList = new ArrayList<>();
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Realtidsmuseet");
 
         requestPermissions(new String[] {Manifest.permission.ACCESS_COARSE_LOCATION}, 1234);
 
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout(IBEACON_LAYOUT));
         beaconManager.bind(this);
         logWindow = (TextView) findViewById(R.id.logWindow);
+        exhibitionHeader = (TextView) findViewById(R.id.exhibitionHeader);
         logWindow.setMovementMethod(new ScrollingMovementMethod());
         exhibitionSetUp();
 
@@ -53,49 +56,35 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         MuseumPlace place4 = new MuseumPlace("E6:1C:EB:07:A0:BD", "Hej från Kermit the Frog (BD)\n");
         MuseumPlace place5 = new MuseumPlace("ED:98:F0:B5:DF:1E", "Hej från NEMO (IE) \n");
         MuseumPlace place6 = new MuseumPlace("E6:96:82:C4:71:3E", "Hej från Roger Rabbit (3E) \n");
-        Exhibition exhibition1 = new Exhibition("Sveriges historia", "Linear");
+        Exhibition exhibition1 = new Exhibition("Hampus historia", "Linear");
+        Exhibition exhibition2 = new Exhibition("Cecilias historia", "Linear");
         exhibitionList.add(exhibition1);
+        exhibitionList.add(exhibition2);
         exhibition1.addBeacon(place1);
         exhibition1.addBeacon(place2);
         exhibition1.addBeacon(place3);
-        exhibition1.addBeacon(place4);
-        exhibition1.addBeacon(place5);
-        exhibition1.addBeacon(place6);
+        exhibition2.addBeacon(place4);
+        exhibition2.addBeacon(place5);
+        exhibition2.addBeacon(place6);
     }
 
 
     private void beaconTracker(){
-        // TEMP CODE TO PRINT TO SCREEN
-        Beacon closest = findClosestBeacon();
-
         if(beaconsListPresent.size() > 0){
+            Beacon closest = findClosestBeacon();
             String beaconsFound = (Integer.toString(beaconsListPresent.size()) + " beacons found");
             String BeaconText = "The closest Beacon with the BluetoothAddress " + closest.getBluetoothAddress() + " is " + closest.getDistance()+" meters away \n";
-
             MuseumPlace place = findMuseumPlaceFromBeacon(closest);
             String message;
             if(place == null){
-                message = "null";
+                message = "This beacon is not registred";
             }else{
-                message = place.getBeaconMessage() + "\nhas visited: "+place.isVisited();
+                message = place.getBeaconMessage() + "\n\nhas visited: "+place.isVisited();
             }
-
+            clearAndPrintToScreenHeaderArea(place.getBelongsToTheExhibition().getExhibitionName());
             clearAndPrintToScreenTextArea(beaconsFound + "\n\n" + BeaconText + "\n\n" + message);
             printToLogI(beaconsFound + "\n\n" + BeaconText + "\n\n" + message+"\n\n");
         }
-
-        /*
-        printToLogI("!beaconTracker! : BeaconsListPresent:" + beaconsListPresent.size() + " beacons in it");
-        if(beaconsListPresent.size() > 0){
-            String beaconsFound = (Integer.toString(beaconsListPresent.size()) + " beacons found");
-            String BeaconText = "";
-            for(Beacon b : beaconsListPresent){
-                BeaconText += "Beacon with the BluetoothAddress " + b.getBluetoothAddress() + " is " +b.getDistance()+" meters away \n\n";
-            }
-            clearAndPrintToScreenTextArea(beaconsFound + "\n\n" + BeaconText);
-            printToLogI(beaconsFound + "\n\n" + BeaconText);
-        }
-        */
     }
 
     @Override
@@ -109,6 +98,11 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         beaconManager.addRangeNotifier(new RangeNotifier() {
             @Override
             public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, Region region) {
+                /*
+
+                This function scans all the bacons and stores them into the ArrayList.
+
+                 */
                 ArrayList<Beacon> beaconsListTemp = new ArrayList<>();
                 if (beacons.size() > 0) { // The phone find at least one beacon
                     beaconsListTemp = new ArrayList<>();
@@ -122,8 +116,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
                     printToLogI("The beaconsListTemp has " + beaconsListTemp.size() + " beacons in it");
                     printToLogI("The beaconsListPresent has " + beaconsListPresent.size() + " beacons in it");
                 }
-                beaconTracker(); // Maybe remove this one
-
+                beaconTracker();
             }
         });
 
@@ -133,8 +126,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
 
     }
 
-
     private Beacon findClosestBeacon(){
+        /*
+        This function find the closest beacon in the arraylist
+        */
         Beacon closest = null;
         for(Beacon b : beaconsListPresent){
             if(closest == null){
@@ -149,6 +144,9 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
     }
 
     private MuseumPlace findMuseumPlaceFromBeacon(Beacon beacon){
+        /*
+        This function match a physical beacon to a MuseumPlace
+         */
         MuseumPlace museumPlace = null;
         for(Exhibition exhibition : exhibitionList){
             if(exhibition.beaconExistInExhibtion(beacon) != null){
@@ -158,87 +156,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         return null;
     }
 
-
-    /* TEMPORARILY COMMENT OUT - CECILIAS CODE!
-    @Override
-    public void onBeaconServiceConnect() {
-        beaconManager.addRangeNotifier(new RangeNotifier() {
-            @Override
-            public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, Region region) {
-                if (beacons.size() > 0) { // The phone find at least one beacon
-                    String beaconsFound = (Integer.toString(beacons.size()) + " beacons found");
-                    String BeaconText = "";
-
-                    for(Beacon b : beacons){
-                        if(b.getDistance() < beacons.iterator().next().getDistance()){
-                            BeaconText += "B distance " + b.getDistance() + " where next" + beacons.iterator().next().getDistance()+" meters away \n\n";
-                            //BeaconText = beaconOne(BeaconText, b);
-
-                        } else if(beacons.iterator().next().getDistance() < b.getDistance()){
-                            BeaconText += "B next distance " + beacons.iterator().next().getDistance() + " where original" + b.getDistance()+" meters away \n\n";
-                            //BeaconText = beaconTwo(BeaconText, beacons.iterator().next());
-                        } else{
-                            //BeaconText = beaconThree(BeaconText, b);
-                        }
-
-                    }
-                    clearAndPrintToScreenTextArea(beaconsFound + "\n\n" + BeaconText);
-                    printToLogI(beaconsFound + "\n\n" + BeaconText);
-                }
-
-            }
-        });
-
-        try {
-            beaconManager.startRangingBeaconsInRegion(new Region("myRangingUniqueId", null, null, null));
-        } catch (RemoteException e) {    }
-    }
-
-
-    private String beaconOne(String BeaconText, Beacon beacon){
-        MuseumPlace museumBeacon = null;
-        if(!beaconsList.contains(beacon.getBluetoothAddress())){
-            //check if beacon is already in beaconslist, if not, add beacon
-            museumBeacon = new MuseumPlace(beacon);
-            beaconsList.add(museumBeacon);
-        }
-
-        BeaconText += "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \n\n" +
-                " Beacon with the BluetoothAddress " + beacon.getBluetoothAddress() + " is " +beacon.getDistance()+" meters away \n\n" +
-                " Message from ROGER RABBIT \n\n" + museumBeacon.toString() + "\n @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \n\n\n";
-        return BeaconText;
-    }
-
-    private String beaconTwo(String BeaconText, Beacon beacon){
-        MuseumPlace museumBeacon = null;
-        if(!beaconsList.contains(beacon.getBluetoothAddress())){
-            //check if beacon is already in beaconslist, if not, add beacon
-            museumBeacon = new MuseumPlace(beacon);
-            beaconsList.add(museumBeacon);
-        }
-
-        BeaconText += "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \n\n" +
-                " Beacon with the BluetoothAddress " + beacon.getBluetoothAddress() + " is " +beacon.getDistance()+" meters away \n\n" +
-                " Message to find NEMO \n\n " + museumBeacon.toString() + "\n %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n\n";
-        return BeaconText;
-    }
-
-    private String beaconThree(String BeaconText, Beacon beacon){
-        MuseumPlace museumBeacon = null;
-        if(!beaconsList.contains(beacon.getBluetoothAddress())){
-            //check if beacon is already in beaconslist, if not, add beacon
-            museumBeacon = new MuseumPlace(beacon);
-            beaconsList.add(museumBeacon);
-        }
-
-        BeaconText += "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ \n\n" +
-                " Beacon with the BluetoothAddress " + beacon.getBluetoothAddress() + " is " +beacon.getDistance()+" meters away \n\n" +
-                " Message to KERMIT THE FROG \n\n " + museumBeacon.toString() + "\n $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ \n\n\n";
-        return BeaconText;
-    }
-    */
-
     private void printToLogI(String text){
+        /*
+        This function print a string message to the log
+         */
         Log.i(TAG, text);
     }
 
@@ -251,4 +172,14 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
             }
         });
     }
+    private void clearAndPrintToScreenHeaderArea(String text){
+        final String textToPrint = text;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                exhibitionHeader.setText(textToPrint);
+            }
+        });
+    }
+
 }

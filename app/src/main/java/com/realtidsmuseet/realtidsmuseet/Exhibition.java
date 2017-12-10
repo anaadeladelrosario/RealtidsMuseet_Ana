@@ -38,11 +38,11 @@ public class Exhibition {
 
     public void addBeacon(MuseumPlace beacon){
         placeList.add(beacon); // Add the beacon to the exhibition list
+        beacon.setBelongsToTheExhibition(this);
     }
 
     public MuseumPlace beaconExistInExhibtion(Beacon beacon){
         String blutoothadress = beacon.getBluetoothAddress();
-
         for(MuseumPlace p : placeList){
             printToLogI(blutoothadress + " compared to " + p.getBeaconBluetoothAdress());
             if(p.getBeaconBluetoothAdress().equals(blutoothadress)){
