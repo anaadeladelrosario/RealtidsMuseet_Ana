@@ -8,12 +8,31 @@
 
     <TextView
         android:id="@+id/logWindow"
-        android:layout_width="393dp"
-        android:layout_height="567dp"
-        android:maxLines = "999"
-        android:scrollbars = "vertical"
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:maxLines="999"
+        android:scrollbars="vertical"
         android:text="TextView"
-        tools:layout_editor_absoluteX="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/progressBar"
+        android:layout_width="336dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logWindow"
+        app:layout_constraintVertical_bias="0.983" />
 
 </android.support.constraint.ConstraintLayout>
