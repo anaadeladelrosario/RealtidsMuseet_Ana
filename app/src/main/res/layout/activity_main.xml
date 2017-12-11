@@ -8,17 +8,19 @@
 
     <TextView
         android:id="@+id/logWindow"
-        android:layout_width="394dp"
-        android:layout_height="423dp"
+        android:layout_width="389dp"
+        android:layout_height="156dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:maxLines="999"
         android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/beaconTrackerText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exhibitionHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/exhibitionHeader"
+        app:layout_constraintVertical_bias="0.123" />
 
     <TextView
         android:id="@+id/progressBar"
@@ -27,22 +29,32 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Progress bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logWindow"
-        app:layout_constraintVertical_bias="0.983" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/exhibitionHeader"
-        android:layout_width="409dp"
-        android:layout_height="58dp"
+        android:layout_width="395dp"
+        android:layout_height="62dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textSize="30sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/beaconTrackerText"
+        android:layout_width="385dp"
+        android:layout_height="257dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

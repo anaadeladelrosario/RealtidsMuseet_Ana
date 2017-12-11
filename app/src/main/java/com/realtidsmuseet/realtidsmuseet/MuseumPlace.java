@@ -37,7 +37,7 @@ public class MuseumPlace {
     }
 
     /* Visited */
-    public boolean isVisited(){
+    public boolean getVisited(){
         return visited;
     }
     public void setVisitedStatus(boolean visited){
@@ -48,5 +48,5 @@ public class MuseumPlace {
     public Exhibition getBelongsToTheExhibition(){return belongsToTheExhibition;}
     public void setBelongsToTheExhibition(Exhibition belongsToTheExhibition) {this.belongsToTheExhibition = belongsToTheExhibition;}
 
-    public String toString() { return "Address: " + getBeaconBluetoothAdress() + " visited: " + visited + "\n";}
+    public String toString() { return "Address: " + getBeaconBluetoothAdress() + " visited: " + visited + "\n"; }
 }
