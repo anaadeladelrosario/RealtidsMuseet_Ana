@@ -70,10 +70,17 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         MuseumPlace place5 = new MuseumPlace("ED:98:F0:B5:DF:1E", "Hej från NEMO (IE) \n");
         MuseumPlace place6 = new MuseumPlace("E6:96:82:C4:71:3E", "Hej från Roger Rabbit (3E) \n");
 
+
+        MuseumPlace place7 = new MuseumPlace("D7:F6:A5:22:10:03", "Ana blå \n");
+        MuseumPlace place8 = new MuseumPlace("CD:44:8A:AA:5E:D8", "Ana röd \n");
+
+
         Exhibition exhibition1 = new Exhibition("Hampus historia", "Linear");
-        Exhibition exhibition2 = new Exhibition("Cecilias historia", "Linear");
+        Exhibition exhibition2 = new Exhibition("Cecilias historia", "Circular");
+        Exhibition exhibition3 = new Exhibition("Anas historia", "Circular");
         exhibitionList.add(exhibition1);
         exhibitionList.add(exhibition2);
+        exhibitionList.add(exhibition3);
 
         exhibition1.addBeacon(place1);
         exhibition1.addBeacon(place2);
@@ -82,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         exhibition2.addBeacon(place4);
         exhibition2.addBeacon(place5);
         exhibition2.addBeacon(place6);
+
+        exhibition3.addBeacon(place7);
+        exhibition3.addBeacon(place8);
     }
 
 
@@ -103,13 +113,13 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
                     String exhibitionName = inTheExhibition.getExhibitionName();
 
                     //Set the place as visited
-                    closestMuseumPlace.setVisitedStatus(true);
+                    //closestMuseumPlace.setVisitedStatus(true);
 
                     //If Exhibitiontype for the place is linear
                     if(inTheExhibition.getExhibitionType().equals("Linear")){
                         inTheExhibition.setPlaceAsVisitedAndAllBeforeAsVisited(closestMuseumPlace);
-                    }else{
-                        //If we come here it is a circular/open exhibition. TODO LATER
+                    }else if(inTheExhibition.getExhibitionType().equals("Circular")){
+                        closestMuseumPlace.setVisitedStatus(true);
                     }
                     //Show Exhibition name in header
                     clearAndPrintToScreenHeaderArea(exhibitionName);
