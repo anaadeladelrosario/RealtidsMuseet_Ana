@@ -54,7 +54,7 @@ public class Exhibition {
 
     public void setPlaceAsVisitedAndAllBeforeAsVisited(MuseumPlace place){
         for(MuseumPlace p : placeList){
-            if (p.getVisited() == false) {
+            if (!p.getVisited()) {
                 p.setVisitedStatus(true);
                 printToLogI("The beacon with the message: " + p.getBeaconMessage() + " is set as visited!!! ");
             }
