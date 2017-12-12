@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">RealtidsMuseet</string>
+    <string name="text_to_speech">text to speech</string>
+    <string name="this_is_the_text_view_that_will_show_the_message_of_the_beacon_again_in_case_the_user_wants_to_recap_info">This is the text view that will show the message of the beacon again, in case the user wants to recap info</string>
+    <string name="back">back</string>
+    <string name="showall">ShowAll</string>
+    <string name="here_comes_the_information_from_the_beacon">Here comes the information from the beacon</string>
+    <string name="hide">hide</string>
+    <string name="show">show</string>
+    <string name="backbutton">backbutton</string>
 </resources>

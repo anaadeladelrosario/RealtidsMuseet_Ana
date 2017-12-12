@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/logWindow"
-        android:layout_width="389dp"
-        android:layout_height="156dp"
+        android:layout_width="364dp"
+        android:layout_height="86dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -18,9 +18,10 @@
         android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/beaconTrackerText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exhibitionHeader"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintVertical_bias="0.982" />
 
     <TextView
         android:id="@+id/progressBar"
@@ -48,13 +49,28 @@
 
     <TextView
         android:id="@+id/beaconTrackerText"
-        android:layout_width="385dp"
-        android:layout_height="257dp"
+        android:layout_width="371dp"
+        android:layout_height="181dp"
         android:layout_marginBottom="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/showAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="showAll"
+        android:text="@string/showall"
+        app:layout_constraintBottom_toTopOf="@+id/logWindow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exhibitionHeader" />
 
 </android.support.constraint.ConstraintLayout>

@@ -10,13 +10,16 @@
 package com.realtidsmuseet.realtidsmuseet;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.altbeacon.beacon.*;
 import org.altbeacon.beacon.service.RunningAverageRssiFilter;
@@ -261,6 +264,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
                 exhibitionHeader.setText(textToPrint);
             }
         });
+    }
+    public void showAll(View view){
+        Intent intent = new Intent(getApplicationContext(),Main3Activity.class);
+        startActivity(intent);
     }
 
 }
