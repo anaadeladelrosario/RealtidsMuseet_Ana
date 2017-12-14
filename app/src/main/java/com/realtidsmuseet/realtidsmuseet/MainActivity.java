@@ -269,5 +269,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         Intent intent = new Intent(getApplicationContext(),Main3Activity.class);
         startActivity(intent);
     }
+    public void backToStart1(View view){
+
+        Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
+        startActivity(intent);
+    }
 
 }
