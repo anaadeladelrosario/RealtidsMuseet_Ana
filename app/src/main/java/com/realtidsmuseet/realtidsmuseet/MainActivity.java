@@ -212,6 +212,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer{
         /*
         This function match a physical beacon to a MuseumPlace
          */
+
         MuseumPlace museumPlace = null;
         for(Exhibition exhibition : exhibitionList){
             if(exhibition.beaconExistInExhibtion(beacon) != null){
