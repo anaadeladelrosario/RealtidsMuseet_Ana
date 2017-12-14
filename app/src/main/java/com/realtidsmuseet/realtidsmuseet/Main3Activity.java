@@ -10,13 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class Main3Activity extends AppCompatActivity {
 
-    ArrayList<String> beacons = new ArrayList<>();
+    ArrayList<String> placeList = new ArrayList<>();
 
     TextView textView;
     Button b1;
@@ -66,12 +65,12 @@ public class Main3Activity extends AppCompatActivity {
 
         ListView listView= (ListView)findViewById((R.id.beaconList));
 
-        beacons.add("Beacon1");
-        beacons.add("Beacon2");
-        beacons.add("Beacon3");
-        beacons.add("Beacon4");
+        placeList.add("Beacon1");
+        placeList.add("Beacon2");
+        placeList.add("Beacon3");
+        placeList.add("Beacon4");
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, beacons);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, placeList);
 
         listView.setAdapter(arrayAdapter);
 
@@ -81,7 +80,7 @@ public class Main3Activity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Intent intent = new Intent (getApplicationContext(),Main4Activity.class);
-                intent.putExtra("name", beacons.get(i));
+                intent.putExtra("name", placeList.get(i));
                 startActivity(intent);
             }
         });
